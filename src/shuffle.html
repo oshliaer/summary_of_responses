@@ -1,0 +1,21 @@
+<? var shuffle=getShuffleData(); ?>
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons.css">
+    <div id="err"></div>
+    <div id="shuffle">
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>
+    $(function() {
+        shuffler(<?= shuffle ?>);
+        //google.script.run.withSuccessHandler(shuffler)
+        //.withFailureHandler(showError).getShuffleData();
+    });
+
+    function shuffler(e) {
+        $('#shuffle').html(e);
+    }
+
+    function showError(e) {
+        $('#err').html(JSON.stringify(e) + ' ' + 'err' + ' ' + ID_FORM);
+    }
+    </script>

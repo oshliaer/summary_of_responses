@@ -1,0 +1,17 @@
+{
+    "name": "summary_of_responses",
+    "version": "1.0.0",
+    "description": "Summary of responses",
+    "main": "Code.js",
+    "dependencies": {
+
+    },
+    "devDependencies": {
+        "node-google-apps-script": "^1.1.4"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "MIT"
+}

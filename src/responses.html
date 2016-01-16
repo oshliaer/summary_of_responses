@@ -1,0 +1,55 @@
+<? var responses=getResponses(); ?>
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons.css">
+    <script>
+    </script>
+    <style>
+    .content {
+        font-family: "Courier New";
+    }
+    
+    .responses {
+        display: table;
+        width: 90%;
+    }
+    
+    .response_container {
+        display: table-row;
+    }
+    
+    .response_container1 {
+        display: table-cell;
+        width: 70%
+    }
+    
+    .response_container2 {
+        display: table-cell;
+    }
+    </style>
+    <div class="content" style="background-color:#b0c4de; text-align:center;">
+        <div class="responses">
+            <? for (var i=0 ; i < responses.length; i++) {
+    var response=responses[i]; ?>
+                <div class="response_container">
+                    <div class="response_container1">
+                        <? var itemResponses=response.getItemResponses();
+            for (var j=0 ; j < itemResponses.length; j++){
+              var itemResponse=itemResponses[j]; ?>
+                            <span><?= itemResponse.getItem().getTitle(); ?></span><span><?= itemResponse.getResponse(); ?></span>
+                            <? } ?>
+                    </div>
+                    <div class="response_container2">
+                        <?=response.getTimestamp() ?>
+                            <br> ID:
+                            <?=response.getId() ?>
+                                <br>
+                                <a href="<?=response.getEditResponseUrl() ?>">Edit response</a>
+                                <br> Respondent's email
+                                <?=response.getRespondentEmail() ?>
+                                    <br>
+                                    <a href="<?=response.toPrefilledUrl() ?>">Prefill URL</a>
+                                    <br>
+                    </div>
+                </div>
+                <? }; ?>
+        </div>
+    </div>

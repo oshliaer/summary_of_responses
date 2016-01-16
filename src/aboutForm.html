@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons.css">
+<style>
+#app {
+    margin: 20px auto;
+    width: 60%;
+}
+
+.row {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.head {
+    font-weight: bold;
+}
+</style>
+<div id="app">
+</div>
+<script>
+var id = 'ID_OF_FORM';
+window.addEventListener('load', function(event) {
+
+    printRow('<span class="head">Waiting the server...</span> ');
+    google.script.run.withSuccessHandler(function(e) {
+            clearApp();
+            var arr = JSON.parse(e);
+            for (var i = 0; i < arr.length; i++) {
+                printRow(
+                    '<span class="head">Title:</span> ' + arr[i].title + '<br>' +
+                    '<span class="head">Type:</span> ' + arr[i].type + '<br>' +
+                    '<span class="head">Index:</span> ' + arr[i].index + '<br>' +
+                    '<span class="head">ID:</span> ' + arr[i].id + '<br>' +
+                    '<span class="head">Help Text:</span> ' + arr[i].helpText
+                )
+            }
+        })
+        .withFailureHandler(function(err) {
+            clearApp();
+            printRow('<span class="head">The server said: </span> ' + err);
+        }).getAboutForm(id);
+});
+
+function printRow(html) {
+    var app = document.getElementById('app');
+    var div = document.createElement('div');
+    div.className = 'row';
+    div.innerHTML = html;
+    app.appendChild(div);
+}
+
+function clearApp() {
+    var app = document.getElementById('app');
+    app.innerHTML = '';
+}
+</script>

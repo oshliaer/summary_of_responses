@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons.css">
+<div id="app">
+    <div id="log"></div>
+    <div id="responds"></div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+var id = 'ID_OF_FORM';
+$(function() {
+    //alert(id);
+    $('#log').append($('<div />').html(new Date()));
+    google.script.run
+        .withSuccessHandler(printTable)
+        .withFailureHandler(function(e) {
+            alert(e)
+        }).getManageResponses(id);
+});
+
+function printTable(responds) {
+    var content = JSON.parse(responds);
+    content.forEach(function(e) {
+        $('#responds').append('<a href="' + e.PrefilledUrl + '">link</a><br>');
+    });
+    $('#responds').append(content.length);
+    $('#log').append($('<div />').html(new Date()));
+}
+</script>
